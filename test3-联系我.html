@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>联系我</title>
+	<style>
+		*{
+			margin: 0px;
+			padding: 0px;
+		}
+		#container{
+			width: 100px;
+			height: 300px;
+			background: gray;
+			position: fixed;
+			left: -100px;
+			top: 300px;
+		}
+		#tip{
+			width: 50px;
+			height: 300px;
+			background: #f00;
+			line-height: 300px;
+			text-align: center;
+			position: absolute;
+			left: 100px;
+			top: 0px;
+		}
+		body{
+			height: 2000px;
+		}
+	</style>
+</head>
+<body>
+	<div id="container">
+		<div id="tip">联系我</div>
+	</div>
+	<script>
+		var oContainer = document.getElementById('container');
+		var timer;
+		//window.
+		oContainer.onmouseover = function(){
+			clearInterval(timer);
+			timer = setInterval(function(){
+				if(oContainer.offsetLeft >= 0){
+					 clearInterval(timer);
+				}else
+				 oContainer.style.left = oContainer.offsetLeft + 10 +'px';				
+			},30);
+		}
+		oContainer.onmouseout = function(){
+			clearInterval(timer);
+			timer = setInterval(function(){
+				if(oContainer.offsetLeft <= -100){
+					 clearInterval(timer);
+				}else
+				 oContainer.style.left = oContainer.offsetLeft - 10 +'px';				
+			},30);
+		}
+	</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
