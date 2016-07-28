@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>document</title>
+	<meta charset="UTF-8">
+</head>
+	<style>
+		#container{
+			width: 520px;
+			height: 280px;
+			margin: 30px auto;
+			position: relative;
+			overflow: hidden;
+		}
+		#container img{
+			width: 520px;
+			height: 280px;
+			position: absolute;
+			top: 0px;
+			left: 0px;
+
+		}
+	</style>
+<body>
+	<div id="container">
+		<img src="img/1.jpg" style="z-index: 4">
+		<img src="img/2.jpg" style="z-index: 3">
+		<img src="img/3.jpg" style="z-index: 2">
+		<img src="img/4.jpg" style="z-index: 1">
+	</div>
+	<script src="wichung.js"></script>
+	<script>
+		var oContainer = document.getElementById('container');
+		var aImg = document.getElementsByTagName('img');
+		var bFlag = false;  ////标识动画是否执行完成
+		oContainer.onclick = function(e){
+			if(bFlag == true){
+				return;
+			}
+			bFlag = true;
+			var target = e.target || window.event.srcElement;
+			var data = {opacity : 0};
+			if(target != oContainer){
+				var rand = Math.floor(Math.random() * 4);
+				switch(rand){
+					case 0:
+						data.top = -aImg[0].offsetHeight;
+						break;
+					case 1:
+						data.top = aImg[0].offsetHeight;
+						break;
+					case 2:
+						data.left = -aImg[0].offsetWidth;
+						break;
+					case 3:
+						data.left = aImg[0].offsetWidth;
+						break;
+				}
+				animate(target,data,function(){
+					target.style.top = 0;
+					target.style.left = 0;
+					for(var i=0; i<aImg.length; i++){
+						aImg[i].style.zIndex++;
+					}
+					target.style.zIndex = 1;
+					target.style.opacity = 1;
+					target.style.filter = 'alpha(opacity=100)'
+					bFlag = false;
+				});
+			}
+		};
+	</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
